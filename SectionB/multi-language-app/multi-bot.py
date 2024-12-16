@@ -3,22 +3,17 @@ from dotenv import load_dotenv
 import os
 import requests
 
-load_dotenv()
-translator_region = os.getenv('TRANSLATOR_REGION')
-print(f"Loaded Translator Region: {translator_region}")
-
-
 # Import namespaces
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.language.questionanswering import QuestionAnsweringClient
 
 # Translator API Configuration
 TRANSLATOR_ENDPOINT = "https://api.cognitive.microsofttranslator.com"
-TRANSLATOR_REGION = "eastus"  # e.g., "eastus"
+TRANSLATOR_REGION = "eastus"  # that must be match of your Azure translator service region 
 
 def translate_text(text, to_language, from_language=None):
     """
-    Translate text using Microsoft Azure Translator API.
+    Translate text parts using Microsoft Azure Translator API.
     """
     translator_key = os.getenv('TRANSLATOR_KEY')
     headers = {
@@ -37,7 +32,7 @@ def translate_text(text, to_language, from_language=None):
 
 def detect_language(text):
     """
-    Detect the language of the given text using Azure Translator API.
+    Detecting parts  the language of the given text using Azure Translator API.
     """
     translator_key = os.getenv('TRANSLATOR_KEY')
     headers = {
