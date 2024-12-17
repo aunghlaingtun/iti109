@@ -11,10 +11,9 @@ from azure.ai.language.questionanswering import QuestionAnsweringClient
 TRANSLATOR_ENDPOINT = "https://api.cognitive.microsofttranslator.com"
 TRANSLATOR_REGION = "eastus"  # that must be match of your Azure translator service region 
 
+#Translate text parts using Microsoft Azure Translator API.
 def translate_text(text, to_language, from_language=None):
-    """
-    Translate text parts using Microsoft Azure Translator API.
-    """
+    
     translator_key = os.getenv('TRANSLATOR_KEY')
     headers = {
         "Ocp-Apim-Subscription-Key": translator_key,
@@ -30,10 +29,9 @@ def translate_text(text, to_language, from_language=None):
     response.raise_for_status()  # Raise exception if API call fails
     return response.json()[0]["translations"][0]["text"]
 
+# Detecting parts  the language of the given text using Azure Translator API.
 def detect_language(text):
-    """
-    Detecting parts  the language of the given text using Azure Translator API.
-    """
+    
     translator_key = os.getenv('TRANSLATOR_KEY')
     headers = {
         "Ocp-Apim-Subscription-Key": translator_key,
